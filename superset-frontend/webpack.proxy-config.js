@@ -158,6 +158,9 @@ module.exports = newManifest => {
     changeOrigin: true,
     cookieDomainRewrite: '', // remove cookie domain
     selfHandleResponse: true, // so that the onProxyRes takes care of sending the response
+    onProxyReq(proxyReq) {
+      proxyReq.setHeader('accept-encoding', 'identity');
+    },
     onProxyRes(proxyResponse, request, response) {
       try {
         copyHeaders(proxyResponse, response);

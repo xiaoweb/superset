@@ -33,6 +33,7 @@ import SankeyChartPlugin from '@superset-ui/legacy-plugin-chart-sankey';
 import TableChartPlugin from '@superset-ui/plugin-chart-table';
 import { WordCloudChartPlugin } from '@superset-ui/plugin-chart-word-cloud';
 import WorldMapChartPlugin from '@superset-ui/legacy-plugin-chart-world-map';
+import { SupersetPluginChartHelloWorld } from '@superset-ui/chart-hello-world';
 import {
   AreaChartPlugin,
   BarChartPlugin,
@@ -177,6 +178,9 @@ export default class MainPreset extends Preset {
         new EchartsSunburstChartPlugin().configure({ key: 'sunburst_v2' }),
         new HandlebarsChartPlugin().configure({ key: 'handlebars' }),
         new EchartsBubbleChartPlugin().configure({ key: 'bubble_v2' }),
+        new SupersetPluginChartHelloWorld().configure({
+          key: 'ext-hello-world',
+        }),
         ...experimentalPlugins,
       ],
     });
