@@ -159,7 +159,11 @@ module.exports = newManifest => {
     cookieDomainRewrite: '', // remove cookie domain
     selfHandleResponse: true, // so that the onProxyRes takes care of sending the response
     onProxyReq(proxyReq) {
-      proxyReq.setHeader('accept-encoding', 'identity');
+      const acceptEncoding = proxyReq.getHeader('accept-encoding');
+      if (acceptEncoding) {
+        const arr = acceptEncoding.split(',').filter(item => item !== ' zstd')
+        proxyReq.setHeader('accept-encoding', arr.join(','));
+      }
     },
     onProxyRes(proxyResponse, request, response) {
       try {
