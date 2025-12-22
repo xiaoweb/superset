@@ -30,12 +30,12 @@ const parsedEnvArg = () => {
 };
 
 const { supersetPort = 8088, superset: supersetUrl = null } = parsedEnvArg();
-const backend = (supersetUrl || `http://localhost:${supersetPort}`).replace(
-  '//+$/',
-  '',
-); // strip ending backslash
+// const backend = (supersetUrl || `http://localhost:${supersetPort}`).replace(
+//   '//+$/',
+//   '',
+// ); // strip ending backslash
 
-// const backend = 'https://superset.devops.ecp.digitalvolvo.com';
+const backend = 'https://superset.devops.ecp.digitalvolvo.com';
 
 let manifest;
 function isHTML(res) {
