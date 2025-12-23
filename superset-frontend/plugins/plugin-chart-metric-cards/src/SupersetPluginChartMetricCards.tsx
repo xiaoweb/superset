@@ -19,8 +19,8 @@
 import { useEffect, createRef } from 'react';
 import { styled } from '@superset-ui/core';
 import {
-  SupersetPluginChartHelloWorldProps,
-  SupersetPluginChartHelloWorldStylesProps,
+  SupersetPluginChartMetricCardsProps,
+  SupersetPluginChartMetricCardsStylesProps,
 } from './types';
 
 // The following Styles component is a <div> element, which has been styled using Emotion
@@ -30,7 +30,7 @@ import {
 // imported from @superset-ui/core. For variables available, please visit
 // https://github.com/apache-superset/superset-ui/blob/master/packages/superset-ui-core/src/style/index.ts
 
-const Styles = styled.div<SupersetPluginChartHelloWorldStylesProps>`
+const Styles = styled.div<SupersetPluginChartMetricCardsStylesProps>`
   background-color: ${({ theme }) => theme.colors.secondary.light2};
   padding: ${({ theme }) => theme.gridUnit * 4}px;
   border-radius: ${({ theme }) => theme.gridUnit * 2}px;
@@ -61,8 +61,8 @@ const Styles = styled.div<SupersetPluginChartHelloWorldStylesProps>`
  *  * FormData (your controls!) provided as props by transformProps.ts
  */
 
-export default function SupersetPluginChartHelloWorld(
-  props: SupersetPluginChartHelloWorldProps,
+export default function SupersetPluginChartMetricCards(
+  props: SupersetPluginChartMetricCardsProps,
 ) {
   // height and width are the height and width of the DOM element as it exists in the dashboard.
   // There is also a `data` prop, which is, of course, your DATA 🎉

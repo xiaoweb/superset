@@ -22,24 +22,24 @@ import {
   TimeseriesDataRecord,
 } from '@superset-ui/core';
 
-export interface SupersetPluginChartHelloWorldStylesProps {
+export interface SupersetPluginChartMetricCardsStylesProps {
   height: number;
   width: number;
   headerFontSize: keyof typeof supersetTheme.typography.sizes;
   boldText: boolean;
 }
 
-interface SupersetPluginChartHelloWorldCustomizeProps {
+interface SupersetPluginChartMetricCardsCustomizeProps {
   headerText: string;
 }
 
-export type SupersetPluginChartHelloWorldQueryFormData = QueryFormData &
-  SupersetPluginChartHelloWorldStylesProps &
-  SupersetPluginChartHelloWorldCustomizeProps;
+export type SupersetPluginChartMetricCardsQueryFormData = QueryFormData &
+  SupersetPluginChartMetricCardsStylesProps &
+  SupersetPluginChartMetricCardsCustomizeProps;
 
-export type SupersetPluginChartHelloWorldProps =
-  SupersetPluginChartHelloWorldStylesProps &
-    SupersetPluginChartHelloWorldCustomizeProps & {
+export type SupersetPluginChartMetricCardsProps =
+  SupersetPluginChartMetricCardsStylesProps &
+    SupersetPluginChartMetricCardsCustomizeProps & {
       data: TimeseriesDataRecord[];
       // add typing here for the props you pass in from transformProps.ts!
     };

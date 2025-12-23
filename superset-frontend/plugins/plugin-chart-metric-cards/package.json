@@ -1,5 +1,5 @@
 {
-  "name": "@superset-ui/chart-hello-world",
+  "name": "@superset-ui/chart-metric-cards",
   "version": "0.1.0",
   "description": "Superset Plugin Chart Hello World",
   "sideEffects": false,

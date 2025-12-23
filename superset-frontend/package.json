@@ -112,7 +112,7 @@
     "@superset-ui/plugin-chart-table": "file:./plugins/plugin-chart-table",
     "@superset-ui/plugin-chart-word-cloud": "file:./plugins/plugin-chart-word-cloud",
     "@superset-ui/switchboard": "file:./packages/superset-ui-switchboard",
-    "@superset-ui/chart-hello-world": "file:./plugins/plugin-volvo-chart-hello-world",
+    "@superset-ui/chart-metric-cards": "file:./plugins/plugin-chart-metric-cards",
     "@types/d3-format": "^3.0.1",
     "@types/d3-time-format": "^3.0.1",
     "@visx/axis": "^3.8.0",

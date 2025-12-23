@@ -21,8 +21,9 @@ import buildQuery from './buildQuery';
 import controlPanel from './controlPanel';
 import transformProps from './transformProps';
 import thumbnail from '../images/thumbnail.png';
+import card from '../images/volvo-card.png';
 
-export default class SupersetPluginChartHelloWorld extends ChartPlugin {
+export default class SupersetPluginChartMetricCards extends ChartPlugin {
   /**
    * The constructor is used to pass relevant metadata and callbacks that get
    * registered in respective registries that are used throughout the library
@@ -35,15 +36,21 @@ export default class SupersetPluginChartHelloWorld extends ChartPlugin {
    */
   constructor() {
     const metadata = new ChartMetadata({
-      description: 'Superset Plugin Chart Hello World',
-      name: t('Hello World'),
+      category: t('KPI'),
+      description: 'volvo metric-cards',
+      name: t('metric-cards'),
+      exampleGallery: [
+        {
+          url: card,
+        },
+      ],
       thumbnail,
     });
 
     super({
       buildQuery,
       controlPanel,
-      loadChart: () => import('../SupersetPluginChartHelloWorld'),
+      loadChart: () => import('.././SupersetPluginChartMetricCards'),
       metadata,
       transformProps,
     });
