@@ -27,6 +27,7 @@ export interface SupersetPluginChartMetricCardsStylesProps {
   width: number;
   headerFontSize: keyof typeof supersetTheme.typography.sizes;
   boldText: boolean;
+  backgroundColor: string;
 }
 
 interface SupersetPluginChartMetricCardsCustomizeProps {
