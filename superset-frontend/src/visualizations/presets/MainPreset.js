@@ -179,7 +179,7 @@ export default class MainPreset extends Preset {
         new HandlebarsChartPlugin().configure({ key: 'handlebars' }),
         new EchartsBubbleChartPlugin().configure({ key: 'bubble_v2' }),
         new SupersetPluginChartMetricCards().configure({
-          key: 'ext-hello-world',
+          key: 'metric-cards',
         }),
         ...experimentalPlugins,
       ],

@@ -1,4 +1,4 @@
-import { t, validateNonEmpty } from '@superset-ui/core';
+import { t } from '@superset-ui/core';
 import {
   ControlPanelConfig,
   sharedControls,
@@ -55,7 +55,6 @@ const config: ControlPanelConfig = {
       ],
     },
     {
-      label: t('Hello Controls!'),
       expanded: true,
       controlSetRows: [
         [
@@ -77,7 +76,6 @@ const config: ControlPanelConfig = {
               type: 'TextControl',
               default: 'Hello, World!',
               renderTrigger: true,
-              // ^ this makes it apply instantaneously, without triggering a "run query" button
               label: t('Header Text'),
               description: t('The text you want to see in the header'),
             },
@@ -85,23 +83,24 @@ const config: ControlPanelConfig = {
         ],
         [
           {
-            name: 'header_font_size',
+            name: 'date_format',
             config: {
-              type: 'SelectControl',
-              label: t('Font Size'),
-              default: 'xl',
-              choices: [
-                // [value, label]
-                ['xxs', 'xx-small'],
-                ['xs', 'x-small'],
-                ['s', 'small'],
-                ['m', 'medium'],
-                ['l', 'large'],
-                ['xl', 'x-large'],
-                ['xxl', 'xx-large'],
-              ],
+              type: 'TextControl',
+              default: 'YYYYMMM',
               renderTrigger: true,
-              description: t('The size of your header font'),
+              label: t('Date Format'),
+            },
+          },
+        ],
+        [
+          {
+            name: 'parent_class_name',
+            config: {
+              type: 'TextControl',
+              label: t('Parent add className'),
+              description:
+                'Add a custom class to the parent element of the class dragdroppabl',
+              renderTrigger: true,
             },
           },
         ],
