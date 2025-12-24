@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { styled } from '@superset-ui/core';
 import dayjs from 'dayjs';
-
+import { css, Global } from '@emotion/react';
 import {
   SupersetPluginChartMetricCardsProps,
   SupersetPluginChartMetricCardsStylesProps,
@@ -14,42 +14,75 @@ const greenSvg =
 
 const Styles = styled.div<SupersetPluginChartMetricCardsStylesProps>`
   background-color: ${({ backgroundColor }) => backgroundColor};
-  padding: ${({ theme }) => theme.gridUnit * 4}px;
-  height: ${({ height }) => height}px;
+  // padding: ${({ theme }) => theme.gridUnit * 4}px;
+  padding: 16px 20px;
   width: ${({ width }) => width}px;
 `;
 
 export default function SupersetPluginChartMetricCards(
   props: SupersetPluginChartMetricCardsProps,
 ) {
-  const {
-    headerText,
-    height,
-    width,
-    backgroundColor,
-    parentClassName,
-    data,
-    dateFormat,
-  } = props;
+  const { headerText, height, width, backgroundColor, data, dateFormat } =
+    props;
   const rootElem = useRef<HTMLDivElement>(null);
 
   const isTop = data?.metricD > 0;
 
   useEffect(() => {
     const root = rootElem.current as HTMLElement;
-    if (parentClassName) {
-      root.closest('.dragdroppable')?.classList?.add(parentClassName);
+    const prent = root.closest('.resizable-container');
+    if (prent) {
+      prent.classList.add('__volvo_card_parent');
     }
-  }, [parentClassName, rootElem]);
+  });
+
   return (
     <Styles
       ref={rootElem}
-      boldText={props.boldText}
-      headerFontSize={props.headerFontSize}
       height={height}
       width={width}
       backgroundColor={backgroundColor}
     >
+      <Global
+        styles={css`
+          .__volvo_card_parent {
+            .dashboard-component-chart-holder {
+              display: flex;
+              flex-direction: column;
+              padding: 0 !important;
+              div[data-test='slice-header'] {
+                display: none;
+              }
+              .header-title,
+              .header-controls {
+                display: none;
+              }
+              .chart-slice {
+                flex: 1;
+                .dashboard-chart {
+                  height: 100%;
+                  .chart-container {
+                    height: 100%;
+                    .slice_container {
+                      height: 100%;
+                      & > div {
+                        height: 100%;
+                      }
+                      .metric_cards {
+                        height: 100%;
+                        & > div {
+                          height: 100%;
+                          width: 100%;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        `}
+      />
       <div
         style={{
           display: 'flex',

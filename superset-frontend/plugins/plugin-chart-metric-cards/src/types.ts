@@ -1,10 +1,6 @@
-import { supersetTheme } from '@superset-ui/core';
-
 export interface SupersetPluginChartMetricCardsStylesProps {
   height: number;
   width: number;
-  headerFontSize: keyof typeof supersetTheme.typography.sizes;
-  boldText: boolean;
   backgroundColor: string;
 }
 
