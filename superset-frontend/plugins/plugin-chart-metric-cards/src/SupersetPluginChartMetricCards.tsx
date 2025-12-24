@@ -7,6 +7,11 @@ import {
   SupersetPluginChartMetricCardsStylesProps,
 } from './types';
 
+const redSvg =
+  'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iOSIgdmlld0JveD0iMCAwIDE0IDkiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xMy4yODkzIDBIMC40NjEyMTdDMC4wNzY0NTE4IDAgLTAuMTM4MzkyIDAuNDA2MjUgMC4wOTk4ODkzIDAuNjgzNTk0TDYuNTEzOTUgOC4xMjEwOUM2LjY5NzU1IDguMzMzOTkgNy4wNTEwNiA4LjMzMzk5IDcuMjM2NjEgOC4xMjEwOUwxMy42NTA3IDAuNjgzNTk0QzEzLjg4OSAwLjQwNjI1IDEzLjY3NDEgMCAxMy4yODkzIDBaIiBmaWxsPSIjOUUyQTJCIi8+Cjwvc3ZnPgo=';
+const greenSvg =
+  'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iOSIgdmlld0JveD0iMCAwIDE0IDkiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xMy4yODkzIDguMjgxMjVIMC40NjEyMTdDMC4wNzY0NTE4IDguMjgxMjUgLTAuMTM4MzkyIDcuODc1IDAuMDk5ODg5MyA3LjU5NzY2TDYuNTEzOTUgMC4xNjAxNTdDNi42OTc1NSAtMC4wNTI3MzM0IDcuMDUxMDYgLTAuMDUyNzMzNCA3LjIzNjYxIDAuMTYwMTU3TDEzLjY1MDcgNy41OTc2NkMxMy44ODkgNy44NzUgMTMuNjc0MSA4LjI4MTI1IDEzLjI4OTMgOC4yODEyNVoiIGZpbGw9IiM0NzZEM0IiLz4KPC9zdmc+Cg==';
+
 const Styles = styled.div<SupersetPluginChartMetricCardsStylesProps>`
   background-color: ${({ backgroundColor }) => backgroundColor};
   padding: ${({ theme }) => theme.gridUnit * 4}px;
@@ -27,6 +32,8 @@ export default function SupersetPluginChartMetricCards(
     dateFormat,
   } = props;
   const rootElem = useRef<HTMLDivElement>(null);
+
+  const isTop = data?.metricD > 0;
 
   useEffect(() => {
     const root = rootElem.current as HTMLElement;
@@ -125,8 +132,8 @@ export default function SupersetPluginChartMetricCards(
                 width: '1px',
                 backgroundColor: 'rgba(0, 0, 0, 0.06)',
                 textAlign: 'center',
-                height: '100%',
-                marginTop: '6px',
+                height: 'calc(100% - 24px)',
+                marginTop: '12px',
                 display: 'inline-block',
               }}
             />
@@ -150,11 +157,20 @@ export default function SupersetPluginChartMetricCards(
               style={{
                 fontSize: '16px',
                 lineHeight: '28px',
-                color: 'rgba(158, 42, 43, 1)',
+                color: isTop ? 'rgba(71, 109, 59, 1)' : 'rgba(158, 42, 43, 1)',
                 padding: '2px 0',
               }}
             >
-              {(data?.metricD * 100).toFixed(2)}{' '}
+              <img
+                width={14}
+                style={{
+                  marginRight: 10,
+                  verticalAlign: '1px',
+                }}
+                src={isTop ? greenSvg : redSvg}
+                alt=""
+              />
+              <span>{(data?.metricD * 100).toFixed(2)} </span>
               <span
                 style={{
                   fontSize: '12px',
