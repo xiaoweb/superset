@@ -8,6 +8,9 @@ interface SupersetPluginChartMetricCardsCustomizeProps {
   headerText: string;
   parentClassName: string;
   dateFormat: string;
+  tips?: string;
+  numberFormat: string;
+  momFormat: string;
 }
 
 export type SupersetPluginChartMetricCardsProps =

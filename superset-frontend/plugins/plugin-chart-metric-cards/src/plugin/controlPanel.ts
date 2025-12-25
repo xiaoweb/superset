@@ -1,6 +1,7 @@
 import { t } from '@superset-ui/core';
 import {
   ControlPanelConfig,
+  D3_FORMAT_OPTIONS,
   sharedControls,
 } from '@superset-ui/chart-controls';
 
@@ -21,7 +22,6 @@ const config: ControlPanelConfig = {
             },
           },
         ],
-        // 第二行：上月
         [
           {
             name: 'metric_b',
@@ -40,7 +40,6 @@ const config: ControlPanelConfig = {
             },
           },
         ],
-        // 第三行：增长率
         [
           {
             name: 'metric_d',
@@ -59,7 +58,7 @@ const config: ControlPanelConfig = {
       controlSetRows: [
         [
           {
-            name: 'background_color', // 对应 formData 中的 key
+            name: 'background_color',
             config: {
               type: 'ColorPickerControl',
               label: t('Background Color'),
@@ -83,6 +82,34 @@ const config: ControlPanelConfig = {
         ],
         [
           {
+            name: 'number_format',
+            config: {
+              type: 'SelectControl',
+              label: t('Digital format'),
+              renderTrigger: true,
+              default: ',d',
+              choices: D3_FORMAT_OPTIONS,
+            },
+          },
+        ],
+        [
+          {
+            name: 'MOM_format',
+            config: {
+              type: 'SelectControl',
+              label: t('MOM format'),
+              renderTrigger: true,
+              default: ',.1f',
+              choices: [
+                [',.1f', ',.1f (12345.432 => 12,345.4)'],
+                [',.2f', ',.2f (12345.432 => 12,345.43)'],
+                [',.3f', ',.3f (12345.432 => 12,345.432)'],
+              ],
+            },
+          },
+        ],
+        [
+          {
             name: 'date_format',
             config: {
               type: 'TextControl',
@@ -94,12 +121,10 @@ const config: ControlPanelConfig = {
         ],
         [
           {
-            name: 'parent_class_name',
+            name: 'tips',
             config: {
               type: 'TextControl',
-              label: t('Parent add className'),
-              description:
-                'Add a custom class to the parent element of the class dragdroppabl',
+              label: t('Tips'),
               renderTrigger: true,
             },
           },

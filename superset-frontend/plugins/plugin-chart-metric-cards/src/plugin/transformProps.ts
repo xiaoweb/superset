@@ -33,6 +33,9 @@ export default function transformProps(chartProps: ChartProps) {
     backgroundColor,
     parentClassName,
     dateFormat,
+    tips,
+    numberFormat,
+    momFormat,
   } = formData;
 
   return {
@@ -44,6 +47,9 @@ export default function transformProps(chartProps: ChartProps) {
     headerText,
     parentClassName,
     dateFormat,
+    tips,
+    numberFormat,
+    momFormat,
     backgroundColor: backgroundColor
       ? `rgba(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, ${backgroundColor.a})`
       : 'transparent',

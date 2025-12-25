@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react';
-import { styled } from '@superset-ui/core';
+import { getNumberFormatter, styled } from '@superset-ui/core';
 import dayjs from 'dayjs';
 import { css, Global } from '@emotion/react';
+import { Tooltip } from 'antd';
+import { InfoCircleOutlined } from '@ant-design/icons';
 import {
   SupersetPluginChartMetricCardsProps,
   SupersetPluginChartMetricCardsStylesProps,
@@ -17,16 +19,27 @@ const Styles = styled.div<SupersetPluginChartMetricCardsStylesProps>`
   // padding: ${({ theme }) => theme.gridUnit * 4}px;
   padding: 16px 20px;
   width: ${({ width }) => width}px;
+  position: relative;
 `;
 
 export default function SupersetPluginChartMetricCards(
   props: SupersetPluginChartMetricCardsProps,
 ) {
-  const { headerText, height, width, backgroundColor, data, dateFormat } =
-    props;
+  const {
+    headerText,
+    height,
+    width,
+    backgroundColor,
+    data,
+    dateFormat,
+    tips,
+    numberFormat,
+    momFormat,
+  } = props;
   const rootElem = useRef<HTMLDivElement>(null);
 
   const isTop = data?.metricD > 0;
+  const smartFormatter = getNumberFormatter(numberFormat);
 
   useEffect(() => {
     const root = rootElem.current as HTMLElement;
@@ -43,6 +56,20 @@ export default function SupersetPluginChartMetricCards(
       width={width}
       backgroundColor={backgroundColor}
     >
+      {tips ? (
+        <Tooltip title={tips} placement="top">
+          <InfoCircleOutlined
+            style={{
+              cursor: 'pointer',
+              color: '#888B8D',
+              fontSize: 16,
+              position: 'absolute',
+              right: 20,
+              top: 24,
+            }}
+          />
+        </Tooltip>
+      ) : null}
       <Global
         styles={css`
           .__volvo_card_parent {
@@ -113,7 +140,7 @@ export default function SupersetPluginChartMetricCards(
               fontWeight: 500,
             }}
           >
-            {data?.metricA}
+            {smartFormatter(data?.metricA || 0)}
           </div>
         </div>
         <div
@@ -152,7 +179,7 @@ export default function SupersetPluginChartMetricCards(
                 padding: '2px 0',
               }}
             >
-              {data?.metricC}
+              {smartFormatter(data?.metricC || 0)}
             </div>
           </div>
           <div
@@ -203,7 +230,9 @@ export default function SupersetPluginChartMetricCards(
                 src={isTop ? greenSvg : redSvg}
                 alt=""
               />
-              <span>{(data?.metricD * 100).toFixed(2)} </span>
+              <span>
+                {getNumberFormatter(momFormat)?.((data?.metricD || 0) * 100)}{' '}
+              </span>
               <span
                 style={{
                   fontSize: '12px',
