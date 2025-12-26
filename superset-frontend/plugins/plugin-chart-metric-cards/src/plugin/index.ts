@@ -50,7 +50,7 @@ export default class SupersetPluginChartMetricCards extends ChartPlugin {
     super({
       buildQuery,
       controlPanel,
-      loadChart: () => import('.././SupersetPluginChartMetricCards'),
+      loadChart: () => import('../SupersetPluginChartMetricCards'),
       metadata,
       transformProps,
     });
