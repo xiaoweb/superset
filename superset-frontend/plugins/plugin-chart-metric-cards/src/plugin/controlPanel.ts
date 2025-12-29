@@ -110,6 +110,17 @@ const config: ControlPanelConfig = {
         ],
         [
           {
+            name: 'MOM_invert',
+            config: {
+              type: 'CheckboxControl',
+              label: t('Invert MOM'),
+              renderTrigger: true,
+              default: false,
+            },
+          },
+        ],
+        [
+          {
             name: 'date_format',
             config: {
               type: 'TextControl',

@@ -11,6 +11,7 @@ interface SupersetPluginChartMetricCardsCustomizeProps {
   tips?: string;
   numberFormat: string;
   momFormat: string;
+  momInvert?: boolean;
 }
 
 export type SupersetPluginChartMetricCardsProps =

@@ -35,10 +35,11 @@ export default function SupersetPluginChartMetricCards(
     tips,
     numberFormat,
     momFormat,
+    momInvert,
   } = props;
   const rootElem = useRef<HTMLDivElement>(null);
 
-  const isTop = data?.metricD > 0;
+  const isTop = momInvert ? !(data?.metricD > 0) : data?.metricD > 0;
   const smartFormatter = getNumberFormatter(numberFormat);
 
   useEffect(() => {
@@ -124,10 +125,14 @@ export default function SupersetPluginChartMetricCards(
           }}
         >
           <div
+            title={headerText}
             style={{
               color: '#141414',
               lineHeight: '22px',
               padding: '5px 0',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
             }}
           >
             {headerText}
