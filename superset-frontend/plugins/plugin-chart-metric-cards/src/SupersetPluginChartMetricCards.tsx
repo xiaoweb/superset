@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { getNumberFormatter, styled } from '@superset-ui/core';
 import dayjs from 'dayjs';
 import { css, Global } from '@emotion/react';
@@ -41,6 +41,20 @@ export default function SupersetPluginChartMetricCards(
 
   const isTop = momInvert ? !(data?.metricD > 0) : data?.metricD > 0;
   const smartFormatter = getNumberFormatter(numberFormat);
+
+  const momValue = useMemo(() => {
+    const result = Math.sign(data?.metricD);
+    let str = '';
+    if (result > 0) {
+      str = '+';
+    } else if (result < 0) {
+      str = '-';
+    }
+
+    return `${str}${getNumberFormatter(momFormat)?.(
+      (Math.abs(data?.metricD) || 0) * 100,
+    )}`;
+  }, [data?.metricD, momFormat]);
 
   useEffect(() => {
     const root = rootElem.current as HTMLElement;
@@ -235,8 +249,12 @@ export default function SupersetPluginChartMetricCards(
                 src={isTop ? greenSvg : redSvg}
                 alt=""
               />
-              <span>
-                {getNumberFormatter(momFormat)?.((data?.metricD || 0) * 100)}{' '}
+              <span
+                style={{
+                  marginRight: 6,
+                }}
+              >
+                {momValue}
               </span>
               <span
                 style={{
