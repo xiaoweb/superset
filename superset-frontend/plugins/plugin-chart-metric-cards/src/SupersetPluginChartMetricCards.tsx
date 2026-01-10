@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import { css, Global } from '@emotion/react';
 import { Tooltip } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
+import { isNull } from 'lodash-es';
 import {
   SupersetPluginChartMetricCardsProps,
   SupersetPluginChartMetricCardsStylesProps,
@@ -36,6 +37,7 @@ export default function SupersetPluginChartMetricCards(
     numberFormat,
     momFormat,
     momInvert,
+    emptyText,
   } = props;
   const rootElem = useRef<HTMLDivElement>(null);
 
@@ -159,7 +161,9 @@ export default function SupersetPluginChartMetricCards(
               fontWeight: 500,
             }}
           >
-            {smartFormatter(data?.metricA || 0)}
+            {isNull(data?.metricA)
+              ? emptyText
+              : smartFormatter(data?.metricA || 0)}
           </div>
         </div>
         <div
@@ -198,7 +202,9 @@ export default function SupersetPluginChartMetricCards(
                 padding: '2px 0',
               }}
             >
-              {smartFormatter(data?.metricC || 0)}
+              {isNull(data?.metricC)
+                ? emptyText
+                : smartFormatter(data?.metricC || 0)}
             </div>
           </div>
           <div
@@ -238,31 +244,44 @@ export default function SupersetPluginChartMetricCards(
                 lineHeight: '28px',
                 color: isTop ? 'rgba(71, 109, 59, 1)' : 'rgba(158, 42, 43, 1)',
                 padding: '2px 0',
+                whiteSpace: 'nowrap',
               }}
             >
-              <img
-                width={14}
-                style={{
-                  marginRight: 10,
-                  verticalAlign: '1px',
-                }}
-                src={isTop ? greenSvg : redSvg}
-                alt=""
-              />
-              <span
-                style={{
-                  marginRight: 6,
-                }}
-              >
-                {momValue}
-              </span>
-              <span
-                style={{
-                  fontSize: '12px',
-                }}
-              >
-                %
-              </span>
+              {isNull(data?.metricD) ? (
+                <span
+                  style={{
+                    color: 'rgba(0, 0, 0, 0.85)',
+                  }}
+                >
+                  {emptyText}
+                </span>
+              ) : (
+                <>
+                  <img
+                    width={14}
+                    style={{
+                      marginRight: 10,
+                      verticalAlign: '1px',
+                    }}
+                    src={isTop ? greenSvg : redSvg}
+                    alt=""
+                  />
+                  <span
+                    style={{
+                      marginRight: 6,
+                    }}
+                  >
+                    {momValue}
+                  </span>
+                  <span
+                    style={{
+                      fontSize: '12px',
+                    }}
+                  >
+                    %
+                  </span>
+                </>
+              )}
             </div>
           </div>
         </div>

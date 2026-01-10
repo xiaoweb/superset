@@ -37,6 +37,7 @@ export default function transformProps(chartProps: ChartProps) {
     numberFormat,
     momFormat,
     momInvert,
+    emptyText,
   } = formData;
 
   return {
@@ -52,6 +53,7 @@ export default function transformProps(chartProps: ChartProps) {
     numberFormat,
     momFormat,
     momInvert,
+    emptyText,
     backgroundColor: backgroundColor
       ? `rgba(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, ${backgroundColor.a})`
       : 'transparent',

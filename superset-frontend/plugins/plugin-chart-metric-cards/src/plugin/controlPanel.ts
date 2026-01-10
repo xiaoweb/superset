@@ -94,6 +94,17 @@ const config: ControlPanelConfig = {
         ],
         [
           {
+            name: 'empty_text',
+            config: {
+              type: 'TextControl',
+              label: t('Empty Text'),
+              renderTrigger: true,
+              default: '-',
+            },
+          },
+        ],
+        [
+          {
             name: 'MOM_format',
             config: {
               type: 'SelectControl',
