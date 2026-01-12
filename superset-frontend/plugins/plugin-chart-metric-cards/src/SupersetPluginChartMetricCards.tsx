@@ -242,7 +242,7 @@ export default function SupersetPluginChartMetricCards(
               style={{
                 fontSize: '16px',
                 lineHeight: '28px',
-                color: isTop ? 'rgba(71, 109, 59, 1)' : 'rgba(158, 42, 43, 1)',
+                color: isTop ? 'rgba(158, 42, 43, 1)' : 'rgba(71, 109, 59, 1)',
                 padding: '2px 0',
                 whiteSpace: 'nowrap',
               }}
@@ -262,8 +262,9 @@ export default function SupersetPluginChartMetricCards(
                     style={{
                       marginRight: 10,
                       verticalAlign: '1px',
+                      transform: 'rotate(-180deg)',
                     }}
-                    src={isTop ? greenSvg : redSvg}
+                    src={isTop ? redSvg : greenSvg}
                     alt=""
                   />
                   <span

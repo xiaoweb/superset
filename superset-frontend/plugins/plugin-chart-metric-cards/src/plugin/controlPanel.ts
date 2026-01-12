@@ -62,7 +62,7 @@ const config: ControlPanelConfig = {
             config: {
               type: 'ColorPickerControl',
               label: t('Background Color'),
-              default: { r: 225, g: 223, b: 221, a: 1 }, // 默认值
+              default: { r: 238, g: 236, b: 234, a: 1 }, // 默认值
               renderTrigger: true, // 修改后立即触发重绘
               description: t('Select a background color for the chart'),
             },
